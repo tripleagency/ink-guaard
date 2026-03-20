@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users – Ink Guard Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="admin.css" rel="stylesheet" />
+</head>
+<body>
+
+<button class="sidebar-toggle" onclick="toggleSidebar()">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<div class="admin-layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><div><div class="logo-text">INK GUARD</div><span class="admin-badge">Admin</span></div></div>
+    <div class="sidebar-section">Main</div>
+    <a href="index.html"      class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview</a>
+    <a href="orders.html"     class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 0 2-2h2a2 2 0 0 0 2 2"/></svg>Orders<span class="nav-badge">12</span></a>
+    <a href="reports.html"    class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Reports</a>
+    <div class="sidebar-section">Catalog</div>
+    <a href="products.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Products</a>
+    <a href="categories.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h4l10-10-4-4L4 16z"/><path d="M14.5 5.5l4 4"/></svg>Categories</a>
+    <div class="sidebar-section">Users</div>
+    <a href="users.html" class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Users</a>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">AM</div>
+        <div><div class="sidebar-user-name">Ahmed M.</div><div class="sidebar-user-role">Super Admin</div></div>
+        <a href="../login.html" style="margin-left:auto;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></a>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><div class="topbar-title">Users</div><div class="topbar-breadcrumb">Dashboard / Users</div></div>
+      <!-- Tabs -->
+      <div class="d-flex gap-2 ms-4">
+        <button class="btn-admin-primary" id="tabAdmins" onclick="switchTab('admins',this)">Admin Users</button>
+        <button class="btn-admin-outline" id="tabCustomers" onclick="switchTab('customers',this)">Customers</button>
+      </div>
+      <div class="ms-auto">
+        <button class="btn-admin-yellow" onclick="openAddModal()">+ Add Admin User</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <!-- Stat cards -->
+      <div class="row g-3 mb-4" id="adminStats">
+        <div class="col-6 col-md-3">
+          <div class="stat-card" style="padding:14px 18px;">
+            <div class="stat-icon" style="background:#f0fdf4; width:36px; height:36px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div><div class="stat-label">Admin Users</div><div class="stat-val" style="font-size:1.2rem;">5</div></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card" style="padding:14px 18px;">
+            <div class="stat-icon" style="background:#fdf4ff; width:36px; height:36px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div><div class="stat-label">Super Admins</div><div class="stat-val" style="font-size:1.2rem; color:#a855f7;">2</div></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card" style="padding:14px 18px;">
+            <div class="stat-icon" style="background:#eff6ff; width:36px; height:36px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+            <div><div class="stat-label">Active Now</div><div class="stat-val" style="font-size:1.2rem; color:#3b82f6;">3</div></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card" style="padding:14px 18px;">
+            <div class="stat-icon" style="background:#fff7ed; width:36px; height:36px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div><div class="stat-label">Total Customers</div><div class="stat-val" style="font-size:1.2rem;">2,418</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin users table -->
+      <div id="adminsPanel">
+        <div class="admin-card">
+          <div class="filter-row">
+            <div class="filter-search">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="Search admin users…" oninput="filterAdmins(this.value)" />
+            </div>
+            <select class="admin-select" style="width:auto;">
+              <option>All Roles</option>
+              <option>Super Admin</option>
+              <option>Admin</option>
+              <option>Editor</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+          <table class="admin-table" id="adminsTable">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Last Login</th>
+                <th>2FA</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminsBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Permissions matrix -->
+        <div class="admin-card mt-4">
+          <div class="card-header-admin"><div class="card-title-admin">Role Permissions Matrix</div></div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table" style="font-size:.78rem;">
+              <thead>
+                <tr>
+                  <th>Permission</th>
+                  <th style="text-align:center;">Viewer</th>
+                  <th style="text-align:center;">Editor</th>
+                  <th style="text-align:center;">Admin</th>
+                  <th style="text-align:center;">Super Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>View Dashboard</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+                <tr><td>View Orders</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+                <tr><td>Update Order Status</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+                <tr><td>Add/Edit Products</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+                <tr><td>Delete Products</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+                <tr><td>Manage Categories</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+                <tr><td>View Reports</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+                <tr><td>Manage Admin Users</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+                <tr><td>Site Settings</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center; color:#ccc;">—</td><td style="text-align:center; color:var(--green); font-weight:700;">✓</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customers panel -->
+      <div id="customersPanel" style="display:none;">
+        <div class="admin-card">
+          <div class="filter-row">
+            <div class="filter-search">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="Search customers…" />
+            </div>
+            <select class="admin-select" style="width:auto;">
+              <option>All Customers</option>
+              <option>High Value (1000+ EGP)</option>
+              <option>New (This Month)</option>
+              <option>Inactive (90+ days)</option>
+            </select>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr><th>Customer</th><th>Orders</th><th>Total Spent</th><th>Last Order</th><th>Governorate</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><div class="table-avatar" style="background:#fde8f5;">AK</div><div><div style="font-size:.82rem; font-weight:600;">Ahmed Kamal</div><div style="font-size:.72rem; color:#aaa;">ahmed.k@mail.com</div></div></div></td>
+                <td>14</td><td style="font-weight:600;">3,290 EGP</td><td>Mar 18, 2026</td><td>Cairo</td>
+                <td><span class="badge-admin badge-green">Active</span></td>
+                <td><div class="d-flex gap-1"><button class="btn-icon success"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn-icon danger"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></button></div></td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><div class="table-avatar" style="background:#e8f5fd;">SM</div><div><div style="font-size:.82rem; font-weight:600;">Sara Mohamed</div><div style="font-size:.72rem; color:#aaa;">sara@mail.com</div></div></div></td>
+                <td>8</td><td style="font-weight:600;">1,840 EGP</td><td>Mar 16, 2026</td><td>Giza</td>
+                <td><span class="badge-admin badge-green">Active</span></td>
+                <td><div class="d-flex gap-1"><button class="btn-icon success"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn-icon danger"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></button></div></td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><div class="table-avatar" style="background:#fdf5e0;">ON</div><div><div style="font-size:.82rem; font-weight:600;">Omar Nasser</div><div style="font-size:.72rem; color:#aaa;">omar@mail.com</div></div></div></td>
+                <td>2</td><td style="font-weight:600;">458 EGP</td><td>Jan 10, 2026</td><td>Alexandria</td>
+                <td><span class="badge-admin badge-gray">Inactive</span></td>
+                <td><div class="d-flex gap-1"><button class="btn-icon success"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn-icon danger"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></button></div></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex align-items-center justify-content-between p-3 flex-wrap gap-2" style="border-top:1px solid var(--border);">
+            <span style="font-size:.75rem; color:#888;">Showing 1–10 of 2,418</span>
+            <div class="pagination-admin">
+              <button class="page-btn">‹</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">…</button>
+              <button class="page-btn">242</button>
+              <button class="page-btn">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Add Admin Modal -->
+<div class="modal-backdrop-admin" id="addModal">
+  <div class="modal-admin" style="max-width:480px;">
+    <div class="modal-header-admin">
+      <div class="modal-title-admin" id="adminModalTitle">Add Admin User</div>
+      <button class="modal-close" onclick="closeAddModal()">×</button>
+    </div>
+    <div class="modal-body-admin">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="admin-label">First Name</label>
+          <input type="text" class="admin-input" id="aFirstName" placeholder="Ahmed" />
+        </div>
+        <div class="col-md-6">
+          <label class="admin-label">Last Name</label>
+          <input type="text" class="admin-input" id="aLastName" placeholder="Mohamed" />
+        </div>
+        <div class="col-12">
+          <label class="admin-label">Email Address *</label>
+          <input type="email" class="admin-input" id="aEmail" placeholder="user@inkguard.com" />
+        </div>
+        <div class="col-12">
+          <label class="admin-label">Role *</label>
+          <select class="admin-select" id="aRole">
+            <option value="">Select role</option>
+            <option value="Viewer">Viewer — read-only access</option>
+            <option value="Editor">Editor — manage products &amp; orders</option>
+            <option value="Admin">Admin — full store management</option>
+            <option value="Super Admin">Super Admin — all permissions</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="admin-label">Temporary Password *</label>
+          <div style="position:relative;">
+            <input type="password" class="admin-input" id="aPw" placeholder="Min. 8 characters" />
+            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:#aaa;font-size:.78rem;" onclick="togglePw()">Show</span>
+          </div>
+          <p class="hint">User will be prompted to change password on first login.</p>
+        </div>
+        <div class="col-12">
+          <div style="display:flex; align-items:center; gap:10px; background:#fafafa; padding:12px; border-radius:8px;">
+            <label class="switch"><input type="checkbox" id="a2fa" checked><span class="slider"></span></label>
+            <div>
+              <div style="font-size:.82rem; font-weight:600;">Require 2FA</div>
+              <div class="hint" style="margin:0;">Recommended for all admin accounts</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div style="display:flex; align-items:center; gap:10px; background:#fafafa; padding:12px; border-radius:8px;">
+            <label class="switch"><input type="checkbox" id="aSendEmail" checked><span class="slider"></span></label>
+            <div>
+              <div style="font-size:.82rem; font-weight:600;">Send invitation email</div>
+              <div class="hint" style="margin:0;">User receives login credentials by email</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer-admin">
+      <button class="btn-admin-outline" onclick="closeAddModal()">Cancel</button>
+      <button class="btn-admin-yellow" onclick="saveAdmin()">Create User</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let admins = [
+    { id:1, name:'Ahmed Mohamed', email:'ahmed@inkguard.com', role:'Super Admin', lastLogin:'Now',          twoFA:true,  status:'Active',  initials:'AM', color:'#e8f071' },
+    { id:2, name:'Sara Khaled',   email:'sara@inkguard.com',  role:'Admin',       lastLogin:'2h ago',       twoFA:true,  status:'Active',  initials:'SK', color:'#fde8f5' },
+    { id:3, name:'Mohamed Ali',   email:'moh@inkguard.com',   role:'Editor',      lastLogin:'Yesterday',    twoFA:false, status:'Active',  initials:'MA', color:'#e8f5fd' },
+    { id:4, name:'Layla Hassan',  email:'layla@inkguard.com', role:'Viewer',      lastLogin:'Mar 10, 2026', twoFA:true,  status:'Active',  initials:'LH', color:'#fdf5e0' },
+    { id:5, name:'Omar Farouk',   email:'omar@inkguard.com',  role:'Super Admin', lastLogin:'Mar 15, 2026', twoFA:true,  status:'Inactive',initials:'OF', color:'#ede9fe' },
+  ];
+
+  let editAdminId = null;
+
+  const roleBadge = r => {
+    if (r==='Super Admin') return '<span class="badge-admin badge-purple">Super Admin</span>';
+    if (r==='Admin')       return '<span class="badge-admin badge-blue">Admin</span>';
+    if (r==='Editor')      return '<span class="badge-admin badge-yellow">Editor</span>';
+    return '<span class="badge-admin badge-gray">Viewer</span>';
+  };
+
+  function renderAdmins(data) {
+    document.getElementById('adminsBody').innerHTML = data.map(u => `
+      <tr>
+        <td>
+          <div class="d-flex align-items-center gap-3">
+            <div class="table-avatar" style="background:${u.color}; color:#111;">${u.initials}</div>
+            <div>
+              <div style="font-size:.83rem; font-weight:600;">${u.name}</div>
+              <div style="font-size:.72rem; color:#aaa;">${u.email}</div>
+            </div>
+          </div>
+        </td>
+        <td>${roleBadge(u.role)}</td>
+        <td style="font-size:.78rem; color:#888;">${u.lastLogin}</td>
+        <td style="text-align:center;">
+          ${u.twoFA
+            ? '<span style="color:var(--green); font-size:.78rem; font-weight:600;">✓ ON</span>'
+            : '<span style="color:var(--red); font-size:.78rem; font-weight:600;">✕ OFF</span>'}
+        </td>
+        <td>${u.status==='Active'?'<span class="badge-admin badge-green">● Active</span>':'<span class="badge-admin badge-gray">○ Inactive</span>'}</td>
+        <td>
+          <div class="d-flex gap-1">
+            <button class="btn-icon" title="Edit" onclick="openEdit(${u.id})">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+            <button class="btn-icon" title="Reset Password">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </button>
+            ${u.id !== 1 ? `<button class="btn-icon danger" title="Remove" onclick="removeAdmin(${u.id})">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+            </button>` : ''}
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  renderAdmins(admins);
+
+  function filterAdmins(q) {
+    const filtered = q ? admins.filter(u => u.name.toLowerCase().includes(q.toLowerCase()) || u.email.toLowerCase().includes(q.toLowerCase())) : [...admins];
+    renderAdmins(filtered);
+  }
+
+  function switchTab(tab, btn) {
+    document.querySelectorAll('[id^="tab"]').forEach(b => b.className = 'btn-admin-outline');
+    btn.className = 'btn-admin-primary';
+    document.getElementById('adminsPanel').style.display    = tab === 'admins'    ? 'block' : 'none';
+    document.getElementById('customersPanel').style.display = tab === 'customers' ? 'block' : 'none';
+  }
+
+  function openAddModal() {
+    editAdminId = null;
+    document.getElementById('adminModalTitle').textContent = 'Add Admin User';
+    ['aFirstName','aLastName','aEmail','aPw'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('aRole').value = '';
+    document.getElementById('addModal').classList.add('open');
+  }
+
+  function openEdit(id) {
+    editAdminId = id;
+    const u = admins.find(x => x.id === id);
+    document.getElementById('adminModalTitle').textContent = 'Edit ' + u.name;
+    const parts = u.name.split(' ');
+    document.getElementById('aFirstName').value = parts[0];
+    document.getElementById('aLastName').value  = parts[1] || '';
+    document.getElementById('aEmail').value     = u.email;
+    document.getElementById('aRole').value      = u.role;
+    document.getElementById('addModal').classList.add('open');
+  }
+
+  function closeAddModal() { document.getElementById('addModal').classList.remove('open'); }
+
+  function saveAdmin() {
+    const first = document.getElementById('aFirstName').value.trim();
+    const last  = document.getElementById('aLastName').value.trim();
+    const email = document.getElementById('aEmail').value.trim();
+    const role  = document.getElementById('aRole').value;
+    if (!first || !email || !role) { alert('Please fill in all required fields.'); return; }
+    const name = first + (last ? ' ' + last : '');
+    const initials = (first[0] + (last ? last[0] : '')).toUpperCase();
+
+    if (editAdminId) {
+      const u = admins.find(x => x.id === editAdminId);
+      Object.assign(u, { name, email, role });
+    } else {
+      admins.push({ id: Date.now(), name, email, role, lastLogin: 'Never', twoFA: document.getElementById('a2fa').checked, status: 'Active', initials, color: '#f0f0f0' });
+    }
+    renderAdmins(admins);
+    closeAddModal();
+  }
+
+  function removeAdmin(id) {
+    if (confirm('Remove this admin user?')) {
+      admins = admins.filter(u => u.id !== id);
+      renderAdmins(admins);
+    }
+  }
+
+  function togglePw() {
+    const inp = document.getElementById('aPw');
+    const btn = inp.nextElementSibling;
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+    btn.textContent = inp.type === 'password' ? 'Show' : 'Hide';
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categories – Ink Guard Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="admin.css" rel="stylesheet" />
+</head>
+<body>
+
+<button class="sidebar-toggle" onclick="toggleSidebar()">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div><div class="logo-text">INK GUARD</div><span class="admin-badge">Admin</span></div>
+    </div>
+    <div class="sidebar-section">Main</div>
+    <a href="index.html"      class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview</a>
+    <a href="orders.html"     class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 0 2-2h2a2 2 0 0 0 2 2"/></svg>Orders<span class="nav-badge">12</span></a>
+    <a href="reports.html"    class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Reports</a>
+    <div class="sidebar-section">Catalog</div>
+    <a href="products.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Products</a>
+    <a href="categories.html" class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h4l10-10-4-4L4 16z"/><path d="M14.5 5.5l4 4"/></svg>Categories</a>
+    <div class="sidebar-section">Users</div>
+    <a href="users.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Users</a>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">AM</div>
+        <div><div class="sidebar-user-name">Ahmed M.</div><div class="sidebar-user-role">Super Admin</div></div>
+        <a href="../login.html" style="margin-left:auto;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <div class="topbar">
+      <div><div class="topbar-title">Categories</div><div class="topbar-breadcrumb">Dashboard / Categories</div></div>
+      <div class="ms-auto">
+        <button class="btn-admin-yellow" onclick="openModal()">+ Add Category</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <div class="row g-4">
+
+        <!-- Categories grid -->
+        <div class="col-lg-8">
+
+          <!-- Stat strip -->
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="stat-card" style="padding:14px 16px;">
+                <div><div class="stat-label">Total Categories</div><div class="stat-val" style="font-size:1.2rem;">6</div></div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="stat-card" style="padding:14px 16px;">
+                <div><div class="stat-label">Active</div><div class="stat-val" style="font-size:1.2rem; color:var(--green);">5</div></div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="stat-card" style="padding:14px 16px;">
+                <div><div class="stat-label">Draft</div><div class="stat-val" style="font-size:1.2rem; color:#aaa;">1</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <table class="admin-table" id="catTable">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Slug</th>
+                  <th>Products</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="catBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right panel -->
+        <div class="col-lg-4 d-flex flex-column gap-4">
+
+          <!-- Quick Add inline -->
+          <div class="admin-card">
+            <div class="card-header-admin"><div class="card-title-admin">Quick Add</div></div>
+            <div class="card-body-admin">
+              <div class="mb-3">
+                <label class="admin-label">Category Name</label>
+                <input type="text" class="admin-input" id="quickName" placeholder="e.g. Ink Refills" />
+              </div>
+              <div class="mb-3">
+                <label class="admin-label">Slug (auto)</label>
+                <input type="text" class="admin-input" id="quickSlug" placeholder="ink-refills" />
+              </div>
+              <div class="mb-3">
+                <label class="admin-label">Icon Color</label>
+                <div class="d-flex gap-2 flex-wrap">
+                  <div class="color-pick active" data-color="#e0187a" style="width:26px;height:26px;border-radius:50%;background:#e0187a;cursor:pointer;border:2px solid #111;" onclick="pickColor(this)"></div>
+                  <div class="color-pick" data-color="#3dd4c8" style="width:26px;height:26px;border-radius:50%;background:#3dd4c8;cursor:pointer;border:2px solid transparent;" onclick="pickColor(this)"></div>
+                  <div class="color-pick" data-color="#e8f071" style="width:26px;height:26px;border-radius:50%;background:#e8f071;cursor:pointer;border:2px solid transparent;" onclick="pickColor(this)"></div>
+                  <div class="color-pick" data-color="#3b82f6" style="width:26px;height:26px;border-radius:50%;background:#3b82f6;cursor:pointer;border:2px solid transparent;" onclick="pickColor(this)"></div>
+                  <div class="color-pick" data-color="#111" style="width:26px;height:26px;border-radius:50%;background:#111;cursor:pointer;border:2px solid transparent;" onclick="pickColor(this)"></div>
+                  <div class="color-pick" data-color="#a855f7" style="width:26px;height:26px;border-radius:50%;background:#a855f7;cursor:pointer;border:2px solid transparent;" onclick="pickColor(this)"></div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="admin-label">Description</label>
+                <textarea class="admin-input" id="quickDesc" rows="2" placeholder="Brief description…" style="resize:none;"></textarea>
+              </div>
+              <button class="btn-admin-yellow w-100 justify-content-center" onclick="quickAdd()">Add Category</button>
+            </div>
+          </div>
+
+          <!-- Category tree -->
+          <div class="admin-card">
+            <div class="card-header-admin"><div class="card-title-admin">Category Tree</div></div>
+            <div class="card-body-admin">
+              <div id="catTree" style="font-size:.82rem; line-height:2;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-backdrop-admin" id="catModal">
+  <div class="modal-admin" style="max-width:460px;">
+    <div class="modal-header-admin">
+      <div class="modal-title-admin">Edit Category</div>
+      <button class="modal-close" onclick="closeCatModal()">×</button>
+    </div>
+    <div class="modal-body-admin">
+      <div class="mb-3"><label class="admin-label">Name</label><input type="text" class="admin-input" id="editCatName" /></div>
+      <div class="mb-3"><label class="admin-label">Slug</label><input type="text" class="admin-input" id="editCatSlug" /></div>
+      <div class="mb-3"><label class="admin-label">Description</label><textarea class="admin-input" id="editCatDesc" rows="2" style="resize:none;"></textarea></div>
+      <div class="mb-3">
+        <label class="admin-label">Status</label>
+        <select class="admin-select" id="editCatStatus"><option value="Active">Active</option><option value="Draft">Draft</option></select>
+      </div>
+    </div>
+    <div class="modal-footer-admin">
+      <button class="btn-admin-outline" onclick="closeCatModal()">Cancel</button>
+      <button class="btn-admin-yellow" onclick="saveCat()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let categories = [
+    { id:1, name:'Toner Powder',    slug:'toner-powder',    products:18, status:'Active',  color:'#e0187a', desc:'High-yield toner powder for laser printers' },
+    { id:2, name:'Ink Cartridge',   slug:'ink-cartridge',   products:12, status:'Active',  color:'#3dd4c8', desc:'Ready-to-use ink cartridges for inkjet printers' },
+    { id:3, name:'Ink Bottles',     slug:'ink-bottles',     products:8,  status:'Active',  color:'#3b82f6', desc:'Bulk ink bottles for refillable printers' },
+    { id:4, name:'Toner Cartridge', slug:'toner-cartridge', products:6,  status:'Active',  color:'#111',    desc:'Full toner cartridge units for laser printers' },
+    { id:5, name:'Accessories',     slug:'accessories',     products:3,  status:'Active',  color:'#a855f7', desc:'Printer accessories and maintenance kits' },
+    { id:6, name:'Bundles',         slug:'bundles',         products:1,  status:'Draft',   color:'#e8f071', desc:'Multi-product bundle deals' },
+  ];
+
+  let editCatId = null;
+  let pickedColor = '#e0187a';
+
+  function renderCats() {
+    document.getElementById('catBody').innerHTML = categories.map(c => `
+      <tr>
+        <td>
+          <div class="d-flex align-items-center gap-3">
+            <div style="width:36px;height:36px;border-radius:8px;background:${c.color}22;display:flex;align-items:center;justify-content:center;">
+              <div style="width:14px;height:14px;border-radius:50%;background:${c.color};"></div>
+            </div>
+            <div>
+              <div style="font-weight:600; font-size:.83rem;">${c.name}</div>
+              <div style="font-size:.72rem; color:#aaa;">${c.desc}</div>
+            </div>
+          </div>
+        </td>
+        <td style="font-family:monospace; font-size:.78rem; color:#888;">${c.slug}</td>
+        <td style="font-weight:600;">${c.products}</td>
+        <td>${c.status==='Active'?'<span class="badge-admin badge-green">● Active</span>':'<span class="badge-admin badge-gray">Draft</span>'}</td>
+        <td>
+          <div class="d-flex gap-1">
+            <button class="btn-icon" onclick="openEdit(${c.id})">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+            <button class="btn-icon danger" onclick="deleteCategory(${c.id})">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+
+    // Tree
+    document.getElementById('catTree').innerHTML = categories.map(c => `
+      <div style="display:flex; align-items:center; gap:8px; padding:4px 0;">
+        <div style="width:8px;height:8px;border-radius:50%;background:${c.color};flex-shrink:0;"></div>
+        <span style="color:#555;">${c.name}</span>
+        <span style="margin-left:auto; color:#aaa; font-size:.72rem;">${c.products} products</span>
+      </div>
+    `).join('');
+  }
+
+  renderCats();
+
+  function openModal() {} // Quick add already inline
+
+  function quickAdd() {
+    const name = document.getElementById('quickName').value.trim();
+    if (!name) { alert('Category name is required.'); return; }
+    const slug = document.getElementById('quickSlug').value.trim() || name.toLowerCase().replace(/\s+/g, '-');
+    const desc = document.getElementById('quickDesc').value.trim();
+    categories.push({ id: Date.now(), name, slug, products: 0, status: 'Active', color: pickedColor, desc });
+    document.getElementById('quickName').value = '';
+    document.getElementById('quickSlug').value = '';
+    document.getElementById('quickDesc').value = '';
+    renderCats();
+  }
+
+  document.getElementById('quickName').addEventListener('input', function() {
+    document.getElementById('quickSlug').value = this.value.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  });
+
+  function pickColor(el) {
+    document.querySelectorAll('.color-pick').forEach(e => e.style.borderColor = 'transparent');
+    el.style.borderColor = '#111';
+    pickedColor = el.dataset.color;
+  }
+
+  function openEdit(id) {
+    editCatId = id;
+    const c = categories.find(x => x.id === id);
+    document.getElementById('editCatName').value   = c.name;
+    document.getElementById('editCatSlug').value   = c.slug;
+    document.getElementById('editCatDesc').value   = c.desc;
+    document.getElementById('editCatStatus').value = c.status;
+    document.getElementById('catModal').classList.add('open');
+  }
+
+  function closeCatModal() { document.getElementById('catModal').classList.remove('open'); }
+
+  function saveCat() {
+    const c = categories.find(x => x.id === editCatId);
+    c.name   = document.getElementById('editCatName').value;
+    c.slug   = document.getElementById('editCatSlug').value;
+    c.desc   = document.getElementById('editCatDesc').value;
+    c.status = document.getElementById('editCatStatus').value;
+    renderCats(); closeCatModal();
+  }
+
+  function deleteCategory(id) {
+    if (confirm('Delete this category?')) {
+      categories = categories.filter(c => c.id !== id);
+      renderCats();
+    }
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
