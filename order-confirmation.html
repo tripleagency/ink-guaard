@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed – Ink Guard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <style>
+    .confirm-hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .checkmark-circle {
+      width: 80px; height: 80px;
+      background: #e8f071;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .order-number {
+      display: inline-block;
+      background: #f5f5f5;
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      margin-bottom: 20px;
+    }
+
+    .detail-card {
+      border: 1.5px solid #eee;
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: .85rem;
+    }
+
+    .detail-row:last-child { border-bottom: none; }
+
+    .step-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 40px 0;
+    }
+
+    .track-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    .track-dot {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 8px;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    .track-dot.done   { background: #e8f071; color: #111; }
+    .track-dot.active { background: #111; color: #fff; }
+    .track-dot.future { background: #eee; color: #aaa; }
+
+    .track-line {
+      flex: 1;
+      height: 2px;
+      background: #eee;
+      margin-bottom: 26px;
+      position: relative;
+      top: 0;
+    }
+
+    .track-line.done { background: #e8f071; }
+
+    .track-label { font-size: .72rem; color: #888; }
+    .track-label.done  { color: #111; font-weight: 600; }
+    .track-label.active { color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom py-3 sticky-top">
+    <div class="container-fluid px-4 px-lg-5">
+      <a class="navbar-brand fw-black text-dark" href="index.html">INK GUARD</a>
+    </div>
+  </nav>
+
+  <!-- ── CONFIRMATION HERO ── -->
+  <section class="confirm-hero">
+    <div class="container">
+      <div class="checkmark-circle">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <span class="order-number">Order #IG-2026-04821</span>
+      <h1 class="fw-black mb-2" style="font-size:clamp(1.8rem,4vw,2.6rem);">Thank You, Ahmed!</h1>
+      <p class="text-muted" style="font-size:.92rem;">Your order has been confirmed. A receipt has been sent to <strong>ahmed@example.com</strong></p>
+    </div>
+  </section>
+
+  <!-- ── TRACKING ── -->
+  <section class="pb-5">
+    <div class="container" style="max-width:700px;">
+      <div class="step-track align-items-start">
+        <div class="track-step">
+          <div class="track-dot done">✓</div>
+          <p class="track-label done">Order Placed</p>
+        </div>
+        <div class="track-line done" style="margin-top:16px;"></div>
+        <div class="track-step">
+          <div class="track-dot active">2</div>
+          <p class="track-label active">Processing</p>
+        </div>
+        <div class="track-line" style="margin-top:16px;"></div>
+        <div class="track-step">
+          <div class="track-dot future">3</div>
+          <p class="track-label">Shipped</p>
+        </div>
+        <div class="track-line" style="margin-top:16px;"></div>
+        <div class="track-step">
+          <div class="track-dot future">4</div>
+          <p class="track-label">Delivered</p>
+        </div>
+      </div>
+      <p class="text-center text-muted" style="font-size:.82rem;">
+        Estimated delivery: <strong>March 23–25, 2026</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── DETAILS ── -->
+  <section class="py-5" style="background:#fafafa;">
+    <div class="container" style="max-width:900px;">
+      <div class="row g-4">
+
+        <!-- Order Items -->
+        <div class="col-lg-7">
+          <div class="detail-card">
+            <p class="fw-bold mb-4" style="font-size:.9rem;">Order Items</p>
+
+            <div class="d-flex align-items-center gap-3 detail-row">
+              <div style="width:50px;height:50px;background:#f5e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="28" height="44" viewBox="0 0 28 44" fill="none"><rect x="7" y="0" width="14" height="9" rx="3" fill="#555"/><rect x="2" y="8" width="24" height="35" rx="7" fill="#e0187a"/></svg>
+              </div>
+              <div class="flex-grow-1">
+                <p class="mb-0 fw-semibold" style="font-size:.82rem;">Toner powder set – Magenta</p>
+                <p class="mb-0 text-muted" style="font-size:.75rem;">Qty: 1</p>
+              </div>
+              <span style="font-size:.85rem; font-weight:600;">229 EGP</span>
+            </div>
+
+            <div class="d-flex align-items-center gap-3 detail-row">
+              <div style="width:50px;height:50px;background:#fdf5e0;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="28" height="44" viewBox="0 0 28 44" fill="none"><rect x="7" y="0" width="14" height="9" rx="3" fill="#555"/><rect x="2" y="8" width="24" height="35" rx="7" fill="#e8b400"/></svg>
+              </div>
+              <div class="flex-grow-1">
+                <p class="mb-0 fw-semibold" style="font-size:.82rem;">Toner powder set – Yellow</p>
+                <p class="mb-0 text-muted" style="font-size:.75rem;">Qty: 1</p>
+              </div>
+              <span style="font-size:.85rem; font-weight:600;">229 EGP</span>
+            </div>
+
+            <div class="d-flex justify-content-between pt-3">
+              <span class="text-muted" style="font-size:.82rem;">Subtotal</span>
+              <span style="font-size:.82rem;">485 EGP</span>
+            </div>
+            <div class="d-flex justify-content-between pt-1">
+              <span class="text-muted" style="font-size:.82rem;">Shipping</span>
+              <span style="font-size:.82rem;">0 EGP</span>
+            </div>
+            <div class="d-flex justify-content-between pt-1">
+              <span class="text-muted" style="font-size:.82rem;">Discount (SAVE50)</span>
+              <span style="font-size:.82rem; color:#e0187a;">-50 EGP</span>
+            </div>
+            <div class="d-flex justify-content-between pt-3 border-top mt-2">
+              <span class="fw-bold">Total</span>
+              <span class="fw-bold">435 EGP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping & Payment -->
+        <div class="col-lg-5 d-flex flex-column gap-4">
+          <div class="detail-card">
+            <p class="fw-bold mb-3" style="font-size:.9rem;">Shipping Address</p>
+            <p class="text-muted mb-0" style="font-size:.83rem; line-height:1.8;">
+              Ahmed Mohamed<br>
+              40a Mohamed Mazher, Zamalek<br>
+              Cairo, Egypt 11511<br>
+              +20 100 000 0000
+            </p>
+          </div>
+          <div class="detail-card">
+            <p class="fw-bold mb-3" style="font-size:.9rem;">Payment</p>
+            <p class="text-muted mb-1" style="font-size:.83rem;">Credit Card ending in •••• 3456</p>
+            <p class="text-muted mb-0" style="font-size:.83rem;">Standard Delivery (Free)</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="d-flex flex-wrap gap-3 justify-content-center mt-5">
+        <a href="shop.html" class="btn-yellow-pill" style="padding:12px 28px;">Continue Shopping</a>
+        <a href="contact.html" class="btn-outline-dark-pill" style="padding:12px 28px;">Need Help?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer" style="padding-top:30px;">
+    <div class="container-fluid px-4 px-lg-5">
+      <div class="footer-bottom d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <p class="mb-0" style="font-size:.75rem;color:#888;">Copyright © 2026 Inkguard</p>
+        <div class="d-flex gap-3">
+          <a class="footer-bottom-link" href="privacy-policy.html">Privacy Policy</a>
+          <a class="footer-bottom-link" href="terms.html">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-watermark">INK GUARD</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

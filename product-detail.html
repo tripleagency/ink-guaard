@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toner Powder – Ink Guard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <style>
+    .breadcrumb-link { font-size:.8rem; color:#888; text-decoration:none; }
+    .breadcrumb-link:hover { color:#111; }
+    .breadcrumb-sep { color:#ccc; margin:0 6px; font-size:.8rem; }
+
+    /* Thumbnail strip */
+    .thumb-strip { display:flex; flex-direction:column; gap:10px; }
+    .thumb {
+      width:70px; height:70px; background:#f0f0f0; border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; border:2px solid transparent; transition:.15s;
+    }
+    .thumb.active, .thumb:hover { border-color:#111; }
+
+    /* Main image */
+    .main-img {
+      background:#f5f5f5; border-radius:16px;
+      height:460px; display:flex; align-items:center; justify-content:center;
+    }
+
+    /* Color swatches */
+    .color-swatch {
+      width:32px; height:32px; border-radius:50%; cursor:pointer;
+      border:2px solid transparent; transition:.15s;
+    }
+    .color-swatch:hover, .color-swatch.active { border-color:#111; outline:3px solid #fff; }
+
+    /* Qty control */
+    .qty-box { display:flex; align-items:center; border:1.5px solid #ddd; border-radius:8px; overflow:hidden; }
+    .qty-box button { background:none; border:none; padding:10px 18px; font-size:1.1rem; cursor:pointer; }
+    .qty-box span { padding:0 16px; font-size:.9rem; font-weight:600; }
+
+    /* Accordion specs */
+    .spec-accordion .accordion-button {
+      font-weight:600; font-size:.88rem;
+      padding:16px 0;
+    }
+
+    /* Related products */
+    .related-card .r-img {
+      background:#f0f0f0; border-radius:10px;
+      height:180px; display:flex; align-items:center; justify-content:center;
+      margin-bottom:12px;
+    }
+
+    /* Stock badge */
+    .in-stock { color:#28a745; font-size:.8rem; font-weight:600; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom py-3 sticky-top">
+    <div class="container-fluid px-4 px-lg-5">
+      <a class="navbar-brand fw-black text-dark" href="index.html">INK GUARD</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav gap-4 align-items-center">
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="recycle.html">Recycle Program</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── BREADCRUMB ── -->
+  <div class="container-fluid px-4 px-lg-5 py-3">
+    <a href="shop.html" class="breadcrumb-link">Shop</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="shop.html" class="breadcrumb-link">Toner Powder</a>
+    <span class="breadcrumb-sep">/</span>
+    <span style="font-size:.8rem; color:#111;">Toner Powder Set – Magenta</span>
+  </div>
+
+  <!-- ── PRODUCT DETAIL ── -->
+  <section class="section-py pt-3">
+    <div class="container-fluid px-4 px-lg-5">
+      <div class="row g-5">
+
+        <!-- Images -->
+        <div class="col-lg-7">
+          <div class="d-flex gap-3">
+            <!-- Thumbnails -->
+            <div class="thumb-strip">
+              <div class="thumb active">
+                <svg width="36" height="50" viewBox="0 0 36 50" fill="none"><rect x="6" y="0" width="24" height="45" rx="6" fill="#e0187a"/><rect x="10" y="10" width="16" height="8" rx="2" fill="rgba(255,255,255,.35)"/></svg>
+              </div>
+              <div class="thumb">
+                <svg width="36" height="50" viewBox="0 0 36 50" fill="none"><rect x="6" y="0" width="24" height="45" rx="6" fill="#e0187a"/><rect x="8" y="15" width="20" height="15" rx="2" fill="rgba(255,255,255,.2)"/></svg>
+              </div>
+              <div class="thumb">
+                <svg width="40" height="30" viewBox="0 0 40 30" fill="none"><rect x="2" y="4" width="36" height="22" rx="4" fill="#ddd"/><rect x="6" y="8" width="12" height="14" rx="2" fill="#aaa"/></svg>
+              </div>
+              <div class="thumb">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" fill="#f5c0d4"/><circle cx="18" cy="18" r="8" fill="#e0187a"/></svg>
+              </div>
+            </div>
+
+            <!-- Main image -->
+            <div class="main-img flex-grow-1">
+              <svg width="180" height="290" viewBox="0 0 180 290" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Bottle body -->
+                <rect x="50" y="0" width="80" height="25" rx="8" fill="#333"/>
+                <rect x="60" y="22" width="60" height="260" rx="16" fill="#e0187a"/>
+                <!-- Label -->
+                <rect x="68" y="70" width="44" height="80" rx="6" fill="rgba(255,255,255,0.2)"/>
+                <text x="90" y="98" text-anchor="middle" font-size="7" fill="white" font-family="sans-serif" font-weight="700">TONER</text>
+                <text x="90" y="110" text-anchor="middle" font-size="7" fill="white" font-family="sans-serif" font-weight="700">POWDER</text>
+                <!-- Highlight -->
+                <rect x="64" y="30" width="12" height="50" rx="6" fill="rgba(255,255,255,0.15)"/>
+                <!-- Base -->
+                <ellipse cx="90" cy="280" rx="35" ry="8" fill="rgba(0,0,0,0.08)"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="col-lg-5">
+          <p class="text-muted small mb-1">Toner Powder</p>
+          <h1 class="fw-black mb-1" style="font-size:1.8rem;">Toner Powder Set</h1>
+          <p class="text-muted mb-3" style="font-size:.88rem;">High-yield premium toner powder for laser printers</p>
+
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <span class="fw-black" style="font-size:1.5rem;">229 EGP</span>
+            <span class="text-muted text-decoration-line-through" style="font-size:.9rem;">279 EGP</span>
+            <span class="badge" style="background:#e8f071; color:#111; font-size:.72rem; border-radius:50px; padding:5px 10px;">Save 18%</span>
+          </div>
+
+          <span class="in-stock mb-3 d-block">● In Stock</span>
+
+          <!-- Color selector -->
+          <div class="mb-4">
+            <p class="fw-semibold mb-2" style="font-size:.85rem;">Color: <span class="fw-normal text-muted" id="selectedColor">Magenta</span></p>
+            <div class="d-flex gap-2">
+              <div class="color-swatch" style="background:#e0187a;" title="Magenta" onclick="selectColor(this,'Magenta')" data-color="Magenta"></div>
+              <div class="color-swatch" style="background:#00a8e8;" title="Cyan" onclick="selectColor(this,'Cyan')" data-color="Cyan"></div>
+              <div class="color-swatch" style="background:#e8b400;" title="Yellow" onclick="selectColor(this,'Yellow')" data-color="Yellow"></div>
+              <div class="color-swatch" style="background:#111;" title="Black" onclick="selectColor(this,'Black')" data-color="Black"></div>
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div class="mb-4">
+            <p class="fw-semibold mb-2" style="font-size:.85rem;">Quantity</p>
+            <div class="qty-box d-inline-flex">
+              <button onclick="changeQty(-1)">−</button>
+              <span id="qtyVal">1</span>
+              <button onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="d-flex flex-column gap-2 mb-5">
+            <a href="cart.html" class="btn-gradient-pill text-center py-3 fw-bold" style="font-size:.9rem; border-radius:8px;">Add to Cart</a>
+            <a href="checkout.html" class="btn-outline-dark-pill text-center py-3 fw-bold" style="font-size:.9rem; border-radius:8px;">Buy Now</a>
+          </div>
+
+          <!-- Specs accordion -->
+          <div class="accordion accordion-flush" id="specsAccordion">
+            <div class="accordion-item spec-accordion">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#spec1">
+                  Product Specifications
+                </button>
+              </h2>
+              <div id="spec1" class="accordion-collapse collapse" data-bs-parent="#specsAccordion">
+                <div class="accordion-body px-0">
+                  <table class="table table-sm" style="font-size:.83rem;">
+                    <tr><td class="text-muted">Type</td><td>Toner Powder</td></tr>
+                    <tr><td class="text-muted">Weight</td><td>200g</td></tr>
+                    <tr><td class="text-muted">Page Yield</td><td>~2,500 pages</td></tr>
+                    <tr><td class="text-muted">Compatible</td><td>HP, Canon, Epson, Xerox</td></tr>
+                    <tr><td class="text-muted">Origin</td><td>Locally Manufactured</td></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item spec-accordion">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#spec2">
+                  Shipping & Returns
+                </button>
+              </h2>
+              <div id="spec2" class="accordion-collapse collapse" data-bs-parent="#specsAccordion">
+                <div class="accordion-body px-0 text-muted" style="font-size:.83rem;">
+                  Free shipping on orders over 500 EGP. Delivery within 2–4 business days. Returns accepted within 14 days of purchase if item is unopened.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item spec-accordion border-bottom">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#spec3">
+                  Compatibility Guide
+                </button>
+              </h2>
+              <div id="spec3" class="accordion-collapse collapse" data-bs-parent="#specsAccordion">
+                <div class="accordion-body px-0 text-muted" style="font-size:.83rem;">
+                  Compatible with most standard laser printers. Check your printer model number against our compatibility list. Contact us if unsure.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RELATED PRODUCTS ── -->
+  <section class="section-py" style="background:#fafafa;">
+    <div class="container-fluid px-4 px-lg-5">
+      <h2 class="fw-black mb-5" style="font-size:1.4rem;">You May Also Like</h2>
+      <div class="row g-4">
+        <div class="col-6 col-md-3">
+          <a href="product-detail.html" class="text-decoration-none text-dark related-card d-block">
+            <div class="r-img">
+              <svg width="60" height="95" viewBox="0 0 60 95" fill="none"><rect x="18" y="0" width="24" height="14" rx="4" fill="#555"/><rect x="5" y="12" width="50" height="78" rx="10" fill="#00a8e8"/><rect x="12" y="28" width="36" height="18" rx="3" fill="rgba(255,255,255,.3)"/></svg>
+            </div>
+            <p class="mb-1" style="font-size:.85rem;">Toner powder – Cyan</p>
+            <p class="fw-bold" style="font-size:.85rem;">229 EGP</p>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="product-detail.html" class="text-decoration-none text-dark related-card d-block">
+            <div class="r-img">
+              <svg width="60" height="95" viewBox="0 0 60 95" fill="none"><rect x="18" y="0" width="24" height="14" rx="4" fill="#555"/><rect x="5" y="12" width="50" height="78" rx="10" fill="#e8b400"/><rect x="12" y="28" width="36" height="18" rx="3" fill="rgba(255,255,255,.3)"/></svg>
+            </div>
+            <p class="mb-1" style="font-size:.85rem;">Toner powder – Yellow</p>
+            <p class="fw-bold" style="font-size:.85rem;">229 EGP</p>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="product-detail.html" class="text-decoration-none text-dark related-card d-block">
+            <div class="r-img">
+              <svg width="60" height="95" viewBox="0 0 60 95" fill="none"><rect x="18" y="0" width="24" height="14" rx="4" fill="#555"/><rect x="5" y="12" width="50" height="78" rx="10" fill="#111"/><rect x="12" y="28" width="36" height="18" rx="3" fill="rgba(255,255,255,.15)"/></svg>
+            </div>
+            <p class="mb-1" style="font-size:.85rem;">Toner powder – Black</p>
+            <p class="fw-bold" style="font-size:.85rem;">229 EGP</p>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="product-detail.html" class="text-decoration-none text-dark related-card d-block">
+            <div class="r-img" style="background:#e8e8e8;">
+              <svg width="100" height="80" viewBox="0 0 100 80" fill="none"><rect x="5" y="10" width="26" height="55" rx="4" fill="#00a8e8"/><rect x="34" y="10" width="26" height="55" rx="4" fill="#e8b400"/><rect x="63" y="10" width="26" height="55" rx="4" fill="#e0187a"/><rect x="77" y="10" width="18" height="55" rx="4" fill="#111"/></svg>
+            </div>
+            <p class="mb-1" style="font-size:.85rem;">Ink Cartridge Set CMYK</p>
+            <p class="fw-bold" style="font-size:.85rem;">349 EGP</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="container-fluid px-4 px-lg-5">
+      <div class="row g-4 pb-5">
+        <div class="col-12 col-lg-3"><a class="footer-brand text-decoration-none" href="index.html">INK GUARD</a></div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <p class="footer-col-title">About Us</p>
+          <a class="footer-link" href="services.html">Services</a>
+          <a class="footer-link" href="shop.html">Products</a>
+          <a class="footer-link" href="recycle.html">Recycle Program</a>
+          <a class="footer-link" href="#">Facebook</a>
+          <a class="footer-link" href="#">LinkedIn</a>
+          <a class="footer-link" href="#">Instagram</a>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <p class="footer-col-title">Services</p>
+          <a class="footer-link" href="#">Maintenance</a>
+          <a class="footer-link" href="#">Maintenance</a>
+          <a class="footer-link" href="#">Maintenance</a>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <p class="footer-col-title">Products</p>
+          <a class="footer-link" href="#">Ink Bottles</a>
+          <a class="footer-link" href="#">Ink Cartridge</a>
+          <a class="footer-link" href="#">Toner Powder</a>
+          <a class="footer-link" href="#">Toner Cartridge</a>
+          <a class="footer-link" href="#">Fury</a>
+          <a class="footer-link" href="#">Ghost</a>
+          <a class="footer-link" href="#">Iris</a>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <p class="footer-col-title">Recycle Program</p>
+          <a class="footer-link" href="#">why</a>
+          <a class="footer-link" href="#">how</a>
+          <a class="footer-link" href="#">Fury</a>
+          <a class="footer-link" href="#">Ghost</a>
+          <a class="footer-link" href="#">Iris</a>
+        </div>
+      </div>
+      <div class="border-top border-secondary pt-5 pb-4 text-center">
+        <p class="footer-contact-title">Contact Us</p>
+        <a href="mailto:contact@Inkguard.com" class="footer-email">contact@Inkguard.com</a>
+      </div>
+      <div class="footer-bottom d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <p class="mb-0" style="font-size:.75rem;color:#888;">Copyright © 2026 Inkguard</p>
+        <div class="d-flex gap-3">
+          <a class="footer-bottom-link" href="privacy-policy.html">Privacy Policy</a>
+          <a class="footer-bottom-link" href="terms.html">Terms of Use</a>
+          <a class="footer-bottom-link" href="#">Modern Anti-Slavery Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-watermark">INK GUARD</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function changeQty(d) {
+      const el = document.getElementById('qtyVal');
+      let v = parseInt(el.textContent) + d;
+      if (v < 1) v = 1;
+      el.textContent = v;
+    }
+    function selectColor(el, name) {
+      document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('selectedColor').textContent = name;
+    }
+    // Set initial active swatch
+    document.querySelector('.color-swatch').classList.add('active');
+  </script>
+</body>
+</html>
