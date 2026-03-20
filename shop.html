@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop – Ink Guard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <style>
+    /* ── Shop-specific styles ── */
+    .shop-hero {
+      background: #0a0a0a;
+      min-height: 42vh;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shop-hero .hero-bg {
+      position: absolute;
+      inset: 0;
+      /* Color swatch / pantone chart look */
+      background:
+        linear-gradient(to bottom right, #111 0%, #222 40%, #333 60%, #111 100%);
+    }
+
+    .shop-hero .color-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.85;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(255,255,255,0.03) 18px, rgba(255,255,255,0.03) 19px),
+        repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(255,255,255,0.03) 18px, rgba(255,255,255,0.03) 19px);
+      background: linear-gradient(135deg,
+        #1a0a0a 0%,
+        #3a1020 15%,
+        #8b1a4a 25%,
+        #c02060 32%,
+        #e03880 38%,
+        #e06820 45%,
+        #d4c020 50%,
+        #60b840 55%,
+        #20a880 60%,
+        #1888c8 68%,
+        #2040a8 75%,
+        #401888 82%,
+        #601040 90%,
+        #1a0a0a 100%
+      );
+    }
+
+    .shop-hero .hero-title {
+      position: relative;
+      z-index: 1;
+      padding: 40px 0 50px;
+    }
+
+    /* Category tabs */
+    .cat-tabs {
+      display: flex;
+      gap: 32px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0;
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+
+    .cat-tab {
+      font-size: 0.85rem;
+      color: #888;
+      text-decoration: none;
+      padding-bottom: 12px;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: all .15s;
+      cursor: pointer;
+    }
+
+    .cat-tab:hover { color: #111; }
+    .cat-tab.active {
+      color: #111;
+      font-weight: 700;
+      border-bottom-color: #111;
+    }
+
+    /* Filter sidebar */
+    .filter-sidebar {
+      padding-right: 32px;
+    }
+
+    .filter-item {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #111;
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .filter-item:hover { color: #555; }
+    .filter-item:first-child { border-top: 1px solid #eee; }
+
+    /* Product card */
+    .product-grid-card { cursor: pointer; }
+
+    .product-grid-card .product-img {
+      background: #f0f0f0;
+      border-radius: 8px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: transform .2s;
+    }
+
+    .product-grid-card:hover .product-img { transform: scale(1.01); }
+
+    .product-grid-card .product-name {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .product-grid-card .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-grid-card .product-price {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .product-grid-card .product-variant {
+      font-size: 0.8rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR (transparent over dark hero) ── -->
+  <nav class="navbar navbar-expand-lg py-3"
+       style="background:transparent; position:absolute; width:100%; z-index:10;">
+    <div class="container-fluid px-4 px-lg-5">
+      <a class="navbar-brand fw-black text-white" href="index.html">INK GUARD</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#mainNav" style="filter:invert(1);">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav gap-4 align-items-center">
+          <li class="nav-item"><a class="nav-link text-white fw-semibold" href="shop.html">Shop</a></li>
+          <li class="nav-item"><a class="nav-link text-white" style="opacity:.8;" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link text-white" style="opacity:.8;" href="recycle.html">Recycle Program</a></li>
+          <li class="nav-item"><a class="nav-link text-white" style="opacity:.8;" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link text-white" style="opacity:.8;" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="shop-hero">
+    <div class="hero-bg"></div>
+    <div class="color-grid"></div>
+    <div class="container-fluid px-4 px-lg-5 hero-title">
+      <h1 class="fw-black text-white" style="font-size:clamp(3rem,8vw,6rem); font-style:italic; line-height:1;">
+        Products
+      </h1>
+    </div>
+  </section>
+
+  <!-- ── SHOP CONTENT ── -->
+  <section class="section-py" style="background:#fafafa;">
+    <div class="container-fluid px-4 px-lg-5">
+
+      <!-- Category Tabs -->
+      <div class="cat-tabs" id="catTabs">
+        <a class="cat-tab" onclick="filterCat('toner-cartridge', this)">Toner Cartridge</a>
+        <a class="cat-tab" onclick="filterCat('ink-bottle', this)">Ink Bottle</a>
+        <a class="cat-tab" onclick="filterCat('ink-cartridge', this)">Ink Cartridge</a>
+        <a class="cat-tab active" onclick="filterCat('toner-powder', this)">Toner Powder</a>
+      </div>
+
+      <div class="row g-0">
+        <!-- Filter Sidebar -->
+        <div class="col-lg-2 d-none d-lg-block">
+          <div class="filter-sidebar">
+            <a class="filter-item">Color</a>
+            <a class="filter-item">Price</a>
+            <a class="filter-item">Type</a>
+            <a class="filter-item">Material</a>
+            <a class="filter-item">Sale</a>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="col-lg-10">
+          <div class="row g-4" id="productGrid">
+
+            <!-- Product 1: Toner powder set -->
+            <div class="col-6 col-md-4 product-grid-card" data-cat="toner-powder">
+              <div class="product-img">
+                <svg width="100" height="130" viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="28" y="0" width="44" height="20" rx="5" fill="#aaa"/>
+                  <rect x="10" y="18" width="80" height="105" rx="12" fill="#e0e0e0"/>
+                  <rect x="20" y="40" width="60" height="30" rx="4" fill="rgba(255,255,255,0.6)"/>
+                  <text x="50" y="100" text-anchor="middle" font-size="7" fill="#888" font-family="sans-serif" font-weight="700">TONER POWDER</text>
+                </svg>
+              </div>
+              <p class="product-name">Toner powder set</p>
+              <div class="product-meta">
+                <span class="product-price">229 EGP</span>
+              </div>
+            </div>
+
+            <!-- Product 2: Toner powder blue -->
+            <div class="col-6 col-md-4 product-grid-card" data-cat="toner-powder">
+              <div class="product-img">
+                <svg width="80" height="130" viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="25" y="0" width="30" height="18" rx="4" fill="#555"/>
+                  <rect x="8" y="16" width="64" height="105" rx="12" fill="#00a8e8"/>
+                  <rect x="16" y="36" width="48" height="24" rx="3" fill="rgba(255,255,255,0.3)"/>
+                  <text x="40" y="95" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)" font-family="sans-serif" font-weight="700">TONER POWDER</text>
+                </svg>
+              </div>
+              <p class="product-name">Toner powder</p>
+              <div class="product-meta">
+                <span class="product-price">229 EGP</span>
+                <span class="product-variant">blue</span>
+              </div>
+            </div>
+
+            <!-- Product 3: Toner powder magenta -->
+            <div class="col-6 col-md-4 product-grid-card" data-cat="toner-powder">
+              <div class="product-img">
+                <svg width="80" height="130" viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="25" y="0" width="30" height="18" rx="4" fill="#555"/>
+                  <rect x="8" y="16" width="64" height="105" rx="12" fill="#e0187a"/>
+                  <rect x="16" y="36" width="48" height="24" rx="3" fill="rgba(255,255,255,0.3)"/>
+                  <text x="40" y="95" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)" font-family="sans-serif" font-weight="700">TONER POWDER</text>
+                </svg>
+              </div>
+              <p class="product-name">Toner powder</p>
+              <div class="product-meta">
+                <span class="product-price">229 EGP</span>
+                <span class="product-variant">magenta</span>
+              </div>
+            </div>
+
+            <!-- Product 4: Toner powder yellow -->
+            <div class="col-6 col-md-4 product-grid-card" data-cat="toner-powder">
+              <div class="product-img">
+                <svg width="80" height="130" viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="25" y="0" width="30" height="18" rx="4" fill="#555"/>
+                  <rect x="8" y="16" width="64" height="105" rx="12" fill="#e8b400"/>
+                  <rect x="16" y="36" width="48" height="24" rx="3" fill="rgba(255,255,255,0.3)"/>
+                  <text x="40" y="95" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)" font-family="sans-serif" font-weight="700">TONER POWDER</text>
+                </svg>
+              </div>
+              <p class="product-name">Toner powder</p>
+              <div class="product-meta">
+                <span class="product-price">229 EGP</span>
+                <span class="product-variant">Yellow</span>
+              </div>
+            </div>
+
+            <!-- Product 5: Toner powder set CMYK -->
+            <div class="col-6 col-md-4 product-grid-card" data-cat="toner-powder">
+              <div class="product-img" style="background:#e8e8e8;">
+                <svg width="140" height="110" viewBox="0 0 140 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="10" width="38" height="88" rx="6" fill="white" stroke="#ddd"/>
+                  <rect x="10" y="25" width="28" height="8" rx="2" fill="#ccc"/>
+                  <rect x="47" y="5" width="38" height="90" rx="6" fill="#e8b400"/>
+                  <rect x="52" y="20" width="28" height="8" rx="2" fill="rgba(255,255,255,0.5)"/>
+                  <rect x="89" y="8" width="38" height="88" rx="6" fill="#00a8e8"/>
+                  <rect x="94" y="23" width="28" height="8" rx="2" fill="rgba(255,255,255,0.5)"/>
+                  <text x="70" y="105" text-anchor="middle" font-size="7" fill="#888" font-family="sans-serif">GT51  GT52  GT52</text>
+                </svg>
+              </div>
+              <p class="product-name">Toner powder set</p>
+              <div class="product-meta">
+                <span class="product-price">229 EGP</span>
+                <span class="product-variant">cmyk</span>
+              </div>
+            </div>
+
+            <!-- Ink Bottle products (hidden by default, shown when tab selected) -->
+            <div class="col-6 col-md-4 product-grid-card d-none" data-cat="ink-bottle">
+              <div class="product-img">
+                <svg width="70" height="120" viewBox="0 0 70 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="25" y="0" width="20" height="16" rx="4" fill="#333"/>
+                  <rect x="8" y="14" width="54" height="96" rx="10" fill="#111"/>
+                  <rect x="14" y="30" width="42" height="24" rx="3" fill="#e0187a" opacity=".8"/>
+                  <text x="35" y="85" text-anchor="middle" font-size="6" fill="#888" font-family="sans-serif">INK GUARD</text>
+                </svg>
+              </div>
+              <p class="product-name">Ink Bottle Black</p>
+              <div class="product-meta">
+                <span class="product-price">199 EGP</span>
+                <span class="product-variant">black</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 product-grid-card d-none" data-cat="ink-bottle">
+              <div class="product-img">
+                <svg width="70" height="120" viewBox="0 0 70 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="25" y="0" width="20" height="16" rx="4" fill="#333"/>
+                  <rect x="8" y="14" width="54" height="96" rx="10" fill="#00a8e8"/>
+                  <rect x="14" y="30" width="42" height="24" rx="3" fill="rgba(255,255,255,0.3)"/>
+                  <text x="35" y="85" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.7)" font-family="sans-serif">INK GUARD</text>
+                </svg>
+              </div>
+              <p class="product-name">Ink Bottle Cyan</p>
+              <div class="product-meta">
+                <span class="product-price">199 EGP</span>
+                <span class="product-variant">cyan</span>
+              </div>
+            </div>
+
+            <!-- Ink Cartridge products -->
+            <div class="col-6 col-md-4 product-grid-card d-none" data-cat="ink-cartridge">
+              <div class="product-img">
+                <svg width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="10" width="26" height="55" rx="4" fill="#00a8e8"/>
+                  <rect x="34" y="10" width="26" height="55" rx="4" fill="#e8b400"/>
+                  <rect x="63" y="10" width="26" height="55" rx="4" fill="#e0187a"/>
+                  <rect x="92" y="10" width="20" height="55" rx="4" fill="#111"/>
+                </svg>
+              </div>
+              <p class="product-name">Ink Cartridge Set</p>
+              <div class="product-meta">
+                <span class="product-price">349 EGP</span>
+                <span class="product-variant">cmyk</span>
+              </div>
+            </div>
+
+            <!-- Toner Cartridge products -->
+            <div class="col-6 col-md-4 product-grid-card d-none" data-cat="toner-cartridge">
+              <div class="product-img">
+                <svg width="140" height="80" viewBox="0 0 140 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="10" y="15" width="120" height="50" rx="8" fill="#ddd"/>
+                  <rect x="20" y="25" width="40" height="30" rx="5" fill="#999"/>
+                  <rect x="70" y="25" width="50" height="30" rx="5" fill="#111"/>
+                  <text x="70" y="75" text-anchor="middle" font-size="7" fill="#888" font-family="sans-serif" font-weight="700">INK GUARD</text>
+                </svg>
+              </div>
+              <p class="product-name">Toner Cartridge</p>
+              <div class="product-meta">
+                <span class="product-price">450 EGP</span>
+                <span class="product-variant">black</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 product-grid-card d-none" data-cat="toner-cartridge">
+              <div class="product-img">
+                <svg width="140" height="80" viewBox="0 0 140 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="10" y="15" width="120" height="50" rx="8" fill="#e8d8d8"/>
+                  <rect x="20" y="25" width="40" height="30" rx="5" fill="#c88"/>
+                  <rect x="70" y="25" width="50" height="30" rx="5" fill="#e0187a"/>
+                </svg>
+              </div>
+              <p class="product-name">Toner Cartridge</p>
+              <div class="product-meta">
+                <span class="product-price">450 EGP</span>
+                <span class="product-variant">magenta</span>
+              </div>
+            </div>
+
+          </div><!-- /row -->
+        </div><!-- /col -->
+      </div><!-- /row -->
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="container-fluid px-4 px-lg-5">
+      <div class="row g-4 pb-5">
+        <div class="col-12 col-lg-3">
+          <a class="footer-brand text-decoration-none" href="index.html">INK GUARD</a>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <p class="footer-col-title">About Us</p>
+          <a class="footer-link" href="services.html">Services</a>
+          <a class="footer-link" href="shop.html">Products</a>
+          <a class="footer-link" href="recycle.html">Recycle Program</a>
+          <a class="footer-link" href="#">Facebook</a>
+          <a class="footer-link" href="#">LinkedIn</a>
+          <a class="footer-link" href="#">Instagram</a>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <p class="footer-col-title">Services</p>
+          <a class="footer-link" href="#">Maintenance</a>
+          <a class="footer-link" href="#">Maintenance</a>
+          <a class="footer-link" href="#">Maintenance</a>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <p class="footer-col-title">Products</p>
+          <a class="footer-link" href="#">Ink Bottles</a>
+          <a class="footer-link" href="#">Ink Cartridge</a>
+          <a class="footer-link" href="#">Toner Powder</a>
+          <a class="footer-link" href="#">Toner Cartridge</a>
+          <a class="footer-link" href="#">Fury</a>
+          <a class="footer-link" href="#">Ghost</a>
+          <a class="footer-link" href="#">Iris</a>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <p class="footer-col-title">Recycle Program</p>
+          <a class="footer-link" href="#">why</a>
+          <a class="footer-link" href="#">how</a>
+          <a class="footer-link" href="#">Fury</a>
+          <a class="footer-link" href="#">Ghost</a>
+          <a class="footer-link" href="#">Iris</a>
+        </div>
+      </div>
+      <div class="border-top border-secondary pt-5 pb-4 text-center">
+        <p class="footer-contact-title">Contact Us</p>
+        <a href="mailto:contact@Inkguard.com" class="footer-email">contact@Inkguard.com</a>
+      </div>
+      <div class="footer-bottom d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <p class="mb-0" style="font-size:.75rem; color:#888;">Copyright © 2026 Inkguard</p>
+        <div class="d-flex gap-3">
+          <a class="footer-bottom-link" href="#">Privacy Policy</a>
+          <a class="footer-bottom-link" href="#">Terms of Use</a>
+          <a class="footer-bottom-link" href="#">Modern Anti-Slavery Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-watermark">INK GUARD</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function filterCat(cat, el) {
+      // Update active tab
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+
+      // Show/hide products
+      document.querySelectorAll('#productGrid .product-grid-card').forEach(card => {
+        if (card.dataset.cat === cat) {
+          card.classList.remove('d-none');
+        } else {
+          card.classList.add('d-none');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
